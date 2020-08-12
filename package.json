@@ -1,12 +1,32 @@
 {
-  "name": "bacK",
+  "name": "back",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple express server",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
+    "dev": "npx nodemon .",
+    "initdev": "npm run createDB && npm run migrate && npm run seed",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "createDB": "npx sequelize-cli db:create",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "express",
+    "jwt",
+    "sequelize"
+  ],
+  "author": "Ivaylo Yankov",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.3.0",
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0"
+  }
 }
