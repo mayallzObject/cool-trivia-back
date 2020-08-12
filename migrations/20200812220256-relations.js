@@ -1,5 +1,5 @@
 
-"use strict";
+"use strict"
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,10 +12,10 @@ module.exports = {
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
-    });
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn("scoreboards", "userId");
+    await queryInterface.removeColumn("scoreboards", "userId")
   },
-};
+}
