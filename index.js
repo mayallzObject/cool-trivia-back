@@ -4,6 +4,8 @@ const loggerMiddleWare = require("morgan")
 const corsMiddleWare = require("cors");
 const { PORT } = require("./config/constants")
 
+
+
 const authMiddleWare = require("./auth/middleware")
 
 const app = express()
@@ -21,6 +23,9 @@ if (process.env.DELAY) {
         setTimeout(() => next(), parseInt(process.env.DELAY))
     })
 }
+
+// Routes
+
 
 // GET endpoint for testing purposes, can be removed
 app.get("/", (req, res) => {
