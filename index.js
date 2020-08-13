@@ -1,12 +1,12 @@
 
 const express = require("express")
+
 const loggerMiddleWare = require("morgan")
-const corsMiddleWare = require("cors");
-const { PORT } = require("./config/constants")
-
-
-
+const corsMiddleWare = require("cors")
 const authMiddleWare = require("./auth/middleware")
+
+const { PORT } = require("./config/constants")
+const userRouter = require("./routers/user")
 
 const app = express()
 
@@ -23,9 +23,6 @@ if (process.env.DELAY) {
         setTimeout(() => next(), parseInt(process.env.DELAY))
     })
 }
-
-// Routes
-
 
 // GET endpoint for testing purposes, can be removed
 app.get("/", (req, res) => {
@@ -57,6 +54,10 @@ app.post("/authorized_post_request", authMiddleWare, (req, res) => {
         },
     })
 })
+
+
+// Routes
+app.use("/users", userRouter);
 
 
 app.listen(PORT, () => {
