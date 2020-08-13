@@ -1,4 +1,3 @@
-
 const express = require("express")
 const { Router } = express
 const router = new Router()
@@ -28,11 +27,11 @@ router.get("/:userId", async (req, res, next) => {
 router.patch("/:userId", authMiddleware, async (req, res, next) => {
     try {
         const id = parseInt(req.params.userId)
-        const toUpdate = await User.findByPk(id)
-        if (!toUpdate) {
+        const update = await User.findByPk(id)
+        if (!update) {
             res.status(404).send("User not found")
         } else {
-            const updated = await toUpdate.update(req.body)
+            const updated = await update.update(req.body)
             res.json(updated);
         }
     } catch (e) {
@@ -60,7 +59,7 @@ router.delete("/:userId", authMiddleware, async (req, res, next) => {
 router.post("/:userId/score", authMiddleware, async (req, res) => {
     const { score, userId } = req.body;
     if (!userId) {
-        return res.status(400).send("Missing a userId");
+        return res.status(400).send("Missing a userId")
     }
 
     try {
@@ -77,4 +76,4 @@ router.post("/:userId/score", authMiddleware, async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router
