@@ -36,7 +36,6 @@ router.post("/login", async (req, res, next) => {
     }
 })
 
-
 router.post("/signup", async (req, res) => {
     const { email, password, name } = req.body
 
@@ -67,5 +66,11 @@ router.post("/signup", async (req, res) => {
     }
 })
 
+
+router.get("/me", authMiddleware, async (req, res) => {
+
+    delete req.user.dataValues["password"]
+    res.status(200).send({ ...req.user.dataValues })
+})
 
 module.exports = router
