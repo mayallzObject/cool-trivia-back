@@ -25,21 +25,21 @@ if (process.env.DELAY) {
 
 
 
-app.post("/authorized_post_request", authMiddleware, (req, res) => {
-    // accessing user that was added to req by the auth middleware
-    const user = req.user;
-    // don't send back the password hash
-    delete user.dataValues["password"]
+// app.post("/authorized_post_request", authMiddleware, (req, res) => {
+//     // accessing user that was added to req by the auth middleware
+//     const user = req.user;
+//     // don't send back the password hash
+//     delete user.dataValues["password"]
 
-    res.json({
-        youPosted: {
-            ...req.body,
-        },
-        userFoundWithToken: {
-            ...user.dataValues,
-        },
-    })
-})
+//     res.json({
+//         youPosted: {
+//             ...req.body,
+//         },
+//         userFoundWithToken: {
+//             ...user.dataValues,
+//         },
+//     })
+// })
 
 
 // Routes
