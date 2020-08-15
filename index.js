@@ -1,17 +1,17 @@
 const express = require("express")
-
+const authMiddleware = require("./auth/middleware");
 const loggerMiddleWare = require("morgan")
 const corsMiddleWare = require("cors")
 
 const { PORT } = require("./config/constants")
 const userRouter = require("./routers/user")
 const scoreboardRouter = require("./routers/scoreboard")
+const authRouter = require("./routers/auth")
 
 const app = express()
+const bodyParserMiddleWare = express.json()
 
 app.use(loggerMiddleWare("dev"))
-
-const bodyParserMiddleWare = express.json()
 app.use(bodyParserMiddleWare)
 
 app.use(corsMiddleWare())
@@ -24,8 +24,8 @@ if (process.env.DELAY) {
 }
 
 
-//! POST endpoint which requires a token for testing purposes, can be removed
-// app.post("/authorized_post_request", authMiddleWare, (req, res) => {
+
+// app.post("/authorized_post_request", authMiddleware, (req, res) => {
 //     // accessing user that was added to req by the auth middleware
 //     const user = req.user;
 //     // don't send back the password hash
@@ -43,6 +43,7 @@ if (process.env.DELAY) {
 
 
 // Routes
+app.use("/", authRouter);
 app.use("/users", userRouter)
 app.use("/score", scoreboardRouter)
 

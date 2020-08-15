@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const { Router } = require("express")
 const { toJWT } = require("../auth/jwt")
-
+const authMiddleware = require("../auth/middleware");
 //Models
 const User = require("../models/").user
 
@@ -37,34 +37,37 @@ router.post("/login", async (req, res, next) => {
 })
 
 router.post("/signup", async (req, res) => {
-    const { email, password, name } = req.body
+    const { email, password, name } = req.body;
 
     if (!email || !password || !name) {
-        return res.status(400).send("Please provide an email, password and a name")
+        return res.status(400).send("Please provide an email, password and a name");
     }
 
     try {
         const newUser = await User.create({
             email,
-            password: bcrypt.hashSync(password, SALT_ROUNDS),
+            password: bcrypt.hashSync(password, 10),
             name,
-        })
+        });
 
-        delete newUser.dataValues["password"]
 
-        const token = toJWT({ userId: newUser.id })
+        delete newUser.dataValues["password"]; // don't send back the password hash
 
-        res.status(201).json({ token, ...newUser.dataValues })
+        const token = toJWT({ userId: newUser.id });
+
+        res.status(201).json({ token, ...newUser.dataValues });
     } catch (error) {
         if (error.name === "SequelizeUniqueConstraintError") {
             return res
                 .status(400)
-                .send({ message: "There is an existing account with this email" })
+                .send({ message: "There is an existing account with this email" });
         }
+        console.log(error);
 
-        return res.status(400).send({ message: "Something went wrong, sorry" })
+        return res.status(400).send({ message: "Something went wrong, sorry" });
     }
-})
+
+});
 
 
 router.get("/me", authMiddleware, async (req, res) => {
