@@ -19,26 +19,13 @@ router.get("/", async (req, res, next) => {
 });
 
 
-router.post("/addScoreBoard", async (req, res) => {
-
-
+router.post("/", async (req, res) => {
     const { score, userId } = req.body
 
-    // if (!score || !userId) {
-    //     return res.status(400).send("Missing an score or an userId")
-    // }
-
     try {
-
         const scoreBoard = await Scoreboard.findOne({ where: { userId: parseInt(userId) } });
-
-
         if (scoreBoard !== null) {
-
             await scoreBoard.increment("score", { by: score });
-
-
-
             return res.status(200).json(scoreBoard)
         }
         else {
@@ -46,12 +33,8 @@ router.post("/addScoreBoard", async (req, res) => {
                 score,
                 userId,
             });
-
-
-            res.status(201).json(newScore);
-
+            res.status(201).json(newScore)
         }
-
 
     } catch (error) {
         if (error.name === "SequelizeUniqueConstraintError") {
