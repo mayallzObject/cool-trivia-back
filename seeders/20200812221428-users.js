@@ -26,7 +26,7 @@ module.exports = {
         {
           name: "InsomniaBG",
           email: "c@c.com",
-          imgUrl: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("c", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
