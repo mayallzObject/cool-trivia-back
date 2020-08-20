@@ -17,6 +17,9 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      imgUrl: {
+        type: Sequelize.STRING
+      },
       password: {
         type: Sequelize.STRING,
         allowNull: false
