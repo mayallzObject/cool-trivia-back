@@ -10,6 +10,7 @@ module.exports = {
         {
           name: "Proffesor",
           email: "a@a.com",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("a", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -17,6 +18,7 @@ module.exports = {
         {
           name: "Fatality",
           email: "b@b.com",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("b", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -24,6 +26,7 @@ module.exports = {
         {
           name: "InsomniaBG",
           email: "c@c.com",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("c", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -31,6 +34,7 @@ module.exports = {
         {
           name: "BluNL",
           email: "d@d.com",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("d", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -38,6 +42,7 @@ module.exports = {
         {
           name: "Aztech",
           email: "e@e.com",
+          userImg: "https://www.dailypnut.com/wp-content/uploads/2015/12/putin.jpg",
           password: bcrypt.hashSync("e", SALT_ROUNDS),
           createdAt: new Date(),
           updatedAt: new Date(),
